@@ -1,3 +1,5 @@
+//Not Found Page
+
 import { Link } from "react-router-dom";
 function NotFound() {
   return (

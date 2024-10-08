@@ -1,3 +1,5 @@
+//reponsive nav bar
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
