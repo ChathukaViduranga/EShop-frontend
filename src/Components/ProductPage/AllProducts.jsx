@@ -1,3 +1,4 @@
+//All products Component
 import React, { useState, useEffect } from "react";
 import { getAllProducts } from "../../services/productApiService";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -63,6 +64,17 @@ function AllProducts() {
               <td>{product.quantity}</td>
               <td>{product.stock}</td>
               <td>{product.vendorId}</td>
+              <td className="d-flex justify-content-center align-items-center">
+                {product.isActive ? (
+                  <button className="btn btn-danger d-flex justify-content-center align-items-center">
+                    Deactivate
+                  </button>
+                ) : (
+                  <button className="btn btn-primary d-flex justify-content-center align-items-center">
+                    Activate
+                  </button>
+                )}
+              </td>
             </tr>
           ))}
         </tbody>

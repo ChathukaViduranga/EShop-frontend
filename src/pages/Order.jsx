@@ -1,5 +1,8 @@
+//Order page
+
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import AllOrders from "../Components/OrderPage/AllOrders";
 
 function Order() {
   const navigate = useNavigate();
@@ -13,7 +16,11 @@ function Order() {
   useEffect(() => {
     checkUser();
   }, []);
-  return <div>Order</div>;
+  return (
+    <div>
+      <AllOrders />
+    </div>
+  );
 }
 
 export default Order;

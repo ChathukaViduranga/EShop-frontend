@@ -1,3 +1,5 @@
+//main.jsx
+
 import { StrictMode } from "react";
 import * as bootstrap from "bootstrap";
 import { createRoot } from "react-dom/client";

@@ -1,3 +1,5 @@
+// user Service Api
+
 import axios from "axios";
 const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
@@ -54,6 +56,21 @@ export const deleteMyAccount = async () => {
   try {
     const token = localStorage.getItem("token");
     const response = await axios.delete(`${baseUrl}/user/me`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response;
+  } catch (error) {
+    return error;
+  }
+};
+
+//getAllCustomers
+export const getAllCustomers = async () => {
+  try {
+    const token = localStorage.getItem("token");
+    const response = await axios.get(`${baseUrl}/user/customers`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

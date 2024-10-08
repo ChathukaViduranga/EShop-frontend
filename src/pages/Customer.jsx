@@ -1,5 +1,8 @@
+//Customer page
+
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import AllCustomer from "../Components/Customer/AllCustomer";
 
 function Customer() {
   const navigate = useNavigate();
@@ -13,7 +16,11 @@ function Customer() {
   useEffect(() => {
     checkUser();
   }, []);
-  return <div>Customer</div>;
+  return (
+    <div>
+      <AllCustomer />
+    </div>
+  );
 }
 
 export default Customer;

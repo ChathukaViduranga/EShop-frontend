@@ -1,5 +1,8 @@
+//user page
+
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import AddUsers from "../Components/User/AddUsers";
 
 function User() {
   const navigate = useNavigate();
@@ -13,7 +16,11 @@ function User() {
   useEffect(() => {
     checkUser();
   }, []);
-  return <div>User</div>;
+  return (
+    <div>
+      <AddUsers />
+    </div>
+  );
 }
 
 export default User;
