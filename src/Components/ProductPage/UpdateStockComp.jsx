@@ -14,6 +14,7 @@ function UpdateStock({ product, onUpdate }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const role = localStorage.getItem("role");
 
   const handleStockChange = (e) => {
     setStock(e.target.value);
@@ -73,38 +74,47 @@ function UpdateStock({ product, onUpdate }) {
 
   return (
     <div className="update-stock-container container  mt-4">
-      <h3>Add Stock</h3>
-      {error && <div className="alert alert-danger">{error}</div>}
-      <form onSubmit={handleSubmit} className="form-inline">
-        <div className="form-group mb-2">
-          <label htmlFor="stock" className="sr-only">
-            Add Stock
-          </label>
-          <input
-            type="number"
-            className="form-control"
-            id="stock"
-            onChange={handleStockChange}
-            min="0"
-          />
-        </div>
-        <button
-          type="submit"
-          className="btn btn-primary mb-2 ml-2"
-          disabled={loading}
-        >
-          {loading ? "adding..." : "Add Stock"}
-        </button>
-      </form>
+      {role === "Administrator" && (
+        <>
+          {" "}
+          <h3 className="mt-4">Deactivate Listing</h3>
+          <button onClick={deactivate} className="btn btn-danger mb-2 ml-2">
+            Deactivate
+          </button>
+        </>
+      )}
 
-      <h3 className="mt-4">Deactivate Listing</h3>
-      <button onClick={deactivate} className="btn btn-danger mb-2 ml-2">
-        Deactivate
-      </button>
-      <h3 className="mt-4">Delete Listing</h3>
-      <button onClick={handleDelete} className="btn btn-danger mb-2 ml-2">
-        Delete Listing
-      </button>
+      {role === "Vendor" && (
+        <>
+          <h3>Add Stock</h3>
+          {error && <div className="alert alert-danger">{error}</div>}
+          <form onSubmit={handleSubmit} className="form-inline">
+            <div className="form-group mb-2">
+              <label htmlFor="stock" className="sr-only">
+                Add Stock
+              </label>
+              <input
+                type="number"
+                className="form-control"
+                id="stock"
+                onChange={handleStockChange}
+                min="0"
+              />
+            </div>
+            <button
+              type="submit"
+              className="btn btn-primary mb-2 ml-2"
+              disabled={loading}
+            >
+              {loading ? "adding..." : "Add Stock"}
+            </button>
+          </form>
+          <h3 className="mt-4">Delete Listing</h3>
+          <button onClick={handleDelete} className="btn btn-danger mb-2 ml-2">
+            Delete Listing
+          </button>
+        </>
+      )}
     </div>
   );
 }

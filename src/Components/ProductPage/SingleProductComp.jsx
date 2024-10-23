@@ -28,6 +28,8 @@ function SingleProductComp({ product }) {
     }
   };
 
+  const role = localStorage.getItem("role");
+
   return (
     <div className="single-product-container">
       <div className="container mt-4">

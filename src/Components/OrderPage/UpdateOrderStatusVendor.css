@@ -1,0 +1,36 @@
+/* UpdateOrderStatus.css */
+
+.update-order-status-container {
+  background-color: #1a1a1a; /* Dark background to match theme */
+  padding: 20px;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+.update-order-status-container h3 {
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.update-order-status-container .form-group label {
+  color: #fff;
+}
+
+.update-order-status-container .form-control {
+  background-color: #2a2a2a;
+  color: #fff;
+  border: 1px solid #444;
+}
+
+.update-order-status-container .form-control:focus {
+  background-color: #2a2a2a;
+  color: #fff;
+  border-color: #666;
+  box-shadow: none;
+}
+
+.update-order-status-container .alert-danger {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+}

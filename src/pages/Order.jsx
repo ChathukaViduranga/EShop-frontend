@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import SideNavbar from "../Components/OrderPage/SideNavbar";
 
 import AllOrders from "../Components/OrderPage/AllOrders";
 import { getAllOrders } from "../services/orderApiService";
@@ -35,6 +36,7 @@ function Order() {
   return (
     <div>
       <AllOrders orders={orders} />
+      <SideNavbar />
     </div>
   );
 }

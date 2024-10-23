@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 function AllOrders({ orders }) {
   return (
-    <div className="App">
+    <div>
       <OrderTable orders={orders} />
     </div>
   );

@@ -42,3 +42,35 @@ export const getOrderById = async (orderId) => {
     return error;
   }
 };
+
+export const vendorUpdateOrderDelivered = async (OrderId, ProductId) => {
+  const token = localStorage.getItem("token");
+  try {
+    const response = await axios.post(
+      `${baseUrl}/order/mark-product-delivered`,
+      { OrderId, ProductId },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`, // Pass the bearer token here
+        },
+      }
+    );
+    return response;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const getCanceledOrders = async () => {
+  const token = localStorage.getItem("token");
+  try {
+    const response = await axios.get(`${baseUrl}/order/cancellation-requests`, {
+      headers: {
+        Authorization: `Bearer ${token}`, // Pass the bearer token here
+      },
+    });
+    return response;
+  } catch (error) {
+    return error;
+  }
+};

@@ -22,6 +22,7 @@ import AllUsers from "./pages/AllUsers.jsx";
 import ProfileSildeNav from "./Components/ProfilePage/ProfileSideNav.jsx";
 import ResetPage from "./pages/ResetPage.jsx";
 import SingleOrder from "./pages/SingleOrder.jsx";
+import CanceledOrder from "./pages/CanceledOrder.jsx";
 
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -150,6 +151,16 @@ const router = createBrowserRouter([
       <>
         <Navbar />
         <SingleOrder />
+      </>
+    ),
+    errorElement: <NotFound />,
+  },
+  {
+    path: "/cancel-order",
+    element: (
+      <>
+        <Navbar />
+        <CanceledOrder />
       </>
     ),
     errorElement: <NotFound />,

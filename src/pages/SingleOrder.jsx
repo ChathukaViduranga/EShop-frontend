@@ -36,7 +36,11 @@ function SingleProduct() {
   return (
     <div>
       <div>
-        {order ? <SingleOrderComp order={order} /> : <div>Loading...</div>}
+        {order ? (
+          <SingleOrderComp order={order} onUpdate={onUpdate} />
+        ) : (
+          <div>Loading...</div>
+        )}
       </div>
       {/* <div>
         {product ? (

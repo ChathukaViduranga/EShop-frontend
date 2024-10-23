@@ -2,8 +2,9 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./SingleOrderComp.css"; // Import custom CSS for additional styling
+import UpdateOrderStatusVendor from "./UpdateOrderStateVendorComp";
 
-function SingleOrderComp({ order }) {
+function SingleOrderComp({ order, onUpdate }) {
   console.log("order", order);
   const { id, userId, items, orderDate, status, total, cancellationNote } =
     order;
@@ -69,10 +70,19 @@ function SingleOrderComp({ order }) {
                     <td>${item.price.toFixed(2)}</td>
                     <td>{item.vendorId}</td>
                     <td>{item.status}</td>
+                    <td>
+                      <UpdateOrderStatusVendor
+                        orderId={id}
+                        productID={item.productId}
+                        onUpdate={onUpdate}
+                        currentStatus={item.status}
+                      />
+                    </td>
                   </tr>
                 ))}
               </tbody>
             </table>
+
             {/* You can add buttons or additional actions here */}
           </div>
         </div>
