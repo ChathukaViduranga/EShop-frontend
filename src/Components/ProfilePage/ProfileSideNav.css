@@ -1,0 +1,76 @@
+/* SideNavbar.css */
+
+.side-navbar {
+  position: fixed;
+  top: 10rem;
+  left: 20px;
+  width: 80px; /* Adjust width as needed */
+  background-color: #000; /* Black background */
+  border-radius: 15px; /* Curved corners */
+  padding: 20px 10px;
+  z-index: 1000; /* Ensure it appears above other elements */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.side-navbar .nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.side-navbar .nav-item {
+  margin-bottom: 20px;
+}
+
+.side-navbar .nav-link {
+  color: #fff; /* White text and icon color */
+  text-decoration: none;
+  display: flex;
+  flex-direction: column; /* Stack icon and text vertically */
+  align-items: center;
+}
+
+.side-navbar .nav-link:hover {
+  color: #ccc; /* Hover color */
+}
+
+.side-navbar .nav-link.active {
+  color: #007bff; /* Active link color */
+}
+
+.side-navbar .nav-text {
+  margin-top: 5px; /* Space between icon and text */
+  font-size: 12px;
+  text-align: center;
+}
+
+/* Adjust icon size and color */
+.side-navbar .nav-link svg {
+  color: inherit;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .side-navbar {
+    width: 100%;
+    height: auto;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 10px 0;
+    border-radius: 0;
+  }
+
+  .side-navbar .nav-item {
+    margin-bottom: 0;
+  }
+
+  .side-navbar .nav-text {
+    font-size: 10px;
+  }
+}

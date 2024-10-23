@@ -1,0 +1,86 @@
+/* NotificationButton.css */
+
+/* Notification Button Styling */
+.notification-button {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background-color: #000; /* Black background */
+  color: #fff; /* White icon color */
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.notification-button:hover {
+  background-color: #333; /* Slightly lighter on hover */
+}
+
+.notification-badge {
+  position: absolute;
+  top: 10px;
+  right: -5px;
+  background-color: red;
+  color: #fff;
+  font-size: 12px;
+  padding: 3px 6px;
+  border-radius: 50%;
+}
+
+/* Notification Panel Styling */
+.notification-panel {
+  position: fixed;
+  bottom: 90px; /* Adjust based on button size and position */
+  left: 20px;
+  width: 300px;
+  max-height: 400px;
+  background-color: #1a1a1a; /* Dark background */
+  color: #fff;
+  border: 1px solid #444;
+  border-radius: 5px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.notification-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #000;
+  border-bottom: 1px solid #444;
+}
+
+.notification-header h5 {
+  margin: 0;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.notification-list {
+  padding: 10px;
+}
+
+.notification-item {
+  padding: 10px;
+  border-bottom: 1px solid #444;
+}
+
+.notification-item:last-child {
+  border-bottom: none;
+}
+
+.notification-item:hover {
+  background-color: #333;
+}

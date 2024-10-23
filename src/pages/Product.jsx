@@ -1,8 +1,12 @@
 //Product Page
 
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import AllProducts from "../Components/ProductPage/AllProducts";
+import SideNavbar from "../Components/ProductPage/SideNavbar";
+import NotificationButton from "../Components/ProductPage/NotificationButton";
+import { vendorGetLowStockProducts } from "../services/productApiService";
+import { getUserPermissions } from "../services/userApiService";
 
 function Product() {
   const navigate = useNavigate();
@@ -13,12 +17,43 @@ function Product() {
     }
   };
 
+  const [notifications, setNotifications] = useState([]);
+  const [notificationPermission, setNotificationPermission] = useState(false);
+
+  useEffect(() => {
+    const fetchNotifications = async () => {
+      try {
+        const response = await vendorGetLowStockProducts();
+        setNotifications(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchNotifications();
+  }, []);
+
+  useEffect(() => {
+    const fetchPermissions = async () => {
+      try {
+        const response = await getUserPermissions("productNotification");
+        setNotificationPermission(response);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchPermissions();
+  }, []);
+
   useEffect(() => {
     checkUser();
   }, []);
   return (
-    <div>
+    <div className="product-page">
+      <SideNavbar />
       <AllProducts />
+      {notificationPermission && (
+        <NotificationButton notifications={notifications} />
+      )}
     </div>
   );
 }

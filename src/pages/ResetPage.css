@@ -1,0 +1,43 @@
+/* PasswordReset.css */
+.password-reset-container {
+  margin-left: 7rem;
+}
+.password-reset-container .card {
+  background-color: #000; /* Black background */
+  color: #fff; /* White text */
+}
+
+.password-reset-container .form-control.bg-secondary {
+  background-color: #333; /* Dark grey input background */
+  color: #fff; /* White text */
+  border: none;
+}
+
+.password-reset-container .form-control.bg-secondary:focus {
+  background-color: #444;
+  color: #fff;
+}
+
+.password-reset-container .btn-primary {
+  background-color: #fff; /* White button */
+  color: #000; /* Black text */
+  border: none;
+}
+
+.password-reset-container .btn-primary:hover {
+  background-color: #ccc; /* Light grey on hover */
+}
+
+.password-reset-container .invalid-feedback {
+  color: #ff6b6b; /* Light red for errors */
+}
+
+.alert-success {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.alert-danger {
+  background-color: #dc3545;
+  color: #fff;
+}

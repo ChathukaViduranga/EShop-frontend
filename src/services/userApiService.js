@@ -24,11 +24,18 @@ export const getUserPermissions = async (permission) => {
       "customerpage",
       "orderpage",
       "userpage",
+      "singleproductpage",
+      "lowstockpage",
     ];
     return adminPermissions.includes(permission);
   }
   if (role === "Vendor") {
-    const vendorPermissions = ["productpage"];
+    const vendorPermissions = [
+      "productpage",
+      "addproductpage",
+      "productNotification",
+      "orderpage",
+    ];
     return vendorPermissions.includes(permission);
   }
 
@@ -75,6 +82,75 @@ export const getAllCustomers = async () => {
         Authorization: `Bearer ${token}`,
       },
     });
+    return response;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const getInactiveCustomers = async () => {
+  try {
+    const token = localStorage.getItem("token");
+    const response = await axios.get(`${baseUrl}/user/inactive-users`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const activateCustomer = async (id) => {
+  try {
+    const token = localStorage.getItem("token");
+    const response = await axios.put(
+      `${baseUrl}/user/reactivate/${id}`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return response;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const getAllUsers = async () => {
+  try {
+    const token = localStorage.getItem("token");
+    const response = await axios.get(`${baseUrl}/user/all-users`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const addUser = async (data) => {
+  try {
+    const token = localStorage.getItem("token");
+    const response = await axios.post(`${baseUrl}/user/register`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const passwordRest = async (data) => {
+  try {
+    const response = await axios.put(`${baseUrl}/user/reset-password`, data);
     return response;
   } catch (error) {
     return error;

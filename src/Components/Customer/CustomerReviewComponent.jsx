@@ -1,6 +1,6 @@
 // AllCustomer.js
 import React, { useState, useEffect } from "react";
-import { getAllCustomers } from "../../services/userApiService";
+import { getInactiveCustomers } from "../../services/userApiService";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./AllCustomer.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,8 +12,9 @@ import {
   faSortUp,
   faSortDown,
 } from "@fortawesome/free-solid-svg-icons";
+import { activateCustomer } from "../../services/userApiService";
 
-function AllCustomer() {
+function CustomerReviewComponent() {
   const [searchTerm, setSearchTerm] = useState("");
   const [customers, setCustomers] = useState([]);
   const [sortConfig, setSortConfig] = useState({ key: null, direction: "asc" });
@@ -21,7 +22,7 @@ function AllCustomer() {
   // Fetch customers from the API
   const getCustomers = async () => {
     try {
-      const response = await getAllCustomers();
+      const response = await getInactiveCustomers();
       console.log(response.data);
       setCustomers(response.data);
     } catch (error) {
@@ -88,10 +89,14 @@ function AllCustomer() {
   };
 
   // Functions to handle activation and deactivation
-  const handleActivate = (customerId) => {
-    // Implement activation logic here
-    console.log(`Activating customer with ID: ${customerId}`);
-    // Example: Call an API to activate the customer and update the state
+  const handleActivate = async (id) => {
+    const customerId = id;
+    try {
+      await activateCustomer(customerId);
+      getCustomers();
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const handleDeactivate = (customerId) => {
@@ -105,7 +110,7 @@ function AllCustomer() {
       <div className="container mt-4">
         <div className="card bg-black text-white">
           <div className="card-body">
-            <h2 className="text-center mb-4">All Customers</h2>
+            <h2 className="text-center mb-4">Customer Review</h2>
             <div className="input-group mb-3">
               <input
                 type="text"
@@ -168,7 +173,23 @@ function AllCustomer() {
                       <td>{customer.email}</td>
                       <td>{customer.firstName}</td>
                       <td>{customer.lastName}</td>
-                      <td>{customer.isActive ? "active" : "inactive"}</td>
+                      <td className="text-center">
+                        {customer.isActive ? (
+                          <button
+                            className="btn btn-outline-danger btn-sm same-width-btn"
+                            onClick={() => handleDeactivate(customer.id)}
+                          >
+                            <FontAwesomeIcon icon={faToggleOn} /> Deactivate
+                          </button>
+                        ) : (
+                          <button
+                            className="btn btn-outline-success btn-sm same-width-btn"
+                            onClick={() => handleActivate(customer.id)}
+                          >
+                            <FontAwesomeIcon icon={faToggleOff} /> Activate
+                          </button>
+                        )}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -186,4 +207,4 @@ function AllCustomer() {
   );
 }
 
-export default AllCustomer;
+export default CustomerReviewComponent;

@@ -1,0 +1,23 @@
+/* AddUser.css */
+
+/* Adjust the container to prevent overlap with the navbar */
+.add-user-container {
+  margin-left: 140px; /* Adjust based on your navbar's width */
+  width: 90%;
+}
+
+@media (max-width: 768px) {
+  .add-user-container {
+    margin-left: 0;
+    margin-top: 80px; /* If the navbar moves to the top on smaller screens */
+  }
+}
+
+/* Optional custom styles */
+.form-group label {
+  font-weight: bold;
+}
+
+.btn-block {
+  width: 100%;
+}

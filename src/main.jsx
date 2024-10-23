@@ -1,7 +1,5 @@
 //main.jsx
-
 import { StrictMode } from "react";
-import * as bootstrap from "bootstrap";
 import { createRoot } from "react-dom/client";
 import Home from "./pages/Home.jsx";
 import NotFound from "./pages/NotFound.jsx";
@@ -11,8 +9,19 @@ import Product from "./pages/Product.jsx";
 import Order from "./pages/Order.jsx";
 import Login from "./pages/Login.jsx";
 import Profile from "./pages/Profile.jsx";
-
+import SingleProduct from "./pages/SingleProduct.jsx";
+import AddProduct from "./pages/AddProduct.jsx";
+import SideNavbar from "./Components/ProductPage/SideNavbar.jsx";
+import LowStockProducts from "./Components/ProductPage/LowStockProducts.jsx";
 import Navbar from "./Components/Navbar.jsx";
+import UsersSideNavbar from "./Components/User/UsersSideNavbar.jsx";
+import CustomerSideNav from "./Components/Customer/CustomerSideNav.jsx";
+import CustomerReview from "./pages/CustomerReview.jsx";
+import InactiveProduct from "./pages/InactiveProduct.jsx";
+import AllUsers from "./pages/AllUsers.jsx";
+import ProfileSildeNav from "./Components/ProfilePage/ProfileSideNav.jsx";
+import ResetPage from "./pages/ResetPage.jsx";
+import SingleOrder from "./pages/SingleOrder.jsx";
 
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -34,6 +43,18 @@ const router = createBrowserRouter([
       <>
         <Navbar />
         <User />
+        <UsersSideNavbar />
+      </>
+    ),
+    errorElement: <NotFound />,
+  },
+  {
+    path: "/all-users",
+    element: (
+      <>
+        <Navbar />
+        <AllUsers />
+        <UsersSideNavbar />
       </>
     ),
     errorElement: <NotFound />,
@@ -44,6 +65,18 @@ const router = createBrowserRouter([
       <>
         <Navbar />
         <Customer />
+        <CustomerSideNav />
+      </>
+    ),
+    errorElement: <NotFound />,
+  },
+  {
+    path: "/customer-review",
+    element: (
+      <>
+        <Navbar />
+        <CustomerReview />
+        <CustomerSideNav />
       </>
     ),
     errorElement: <NotFound />,
@@ -59,11 +92,64 @@ const router = createBrowserRouter([
     errorElement: <NotFound />,
   },
   {
+    path: "/add-product",
+    element: (
+      <>
+        <Navbar />
+        <AddProduct />
+        <SideNavbar />
+      </>
+    ),
+    errorElement: <NotFound />,
+  },
+  {
+    path: "/low-stock",
+    element: (
+      <>
+        <Navbar />
+        <LowStockProducts />
+        <SideNavbar />
+      </>
+    ),
+    errorElement: <NotFound />,
+  },
+  {
+    path: "/inactive-products",
+    element: (
+      <>
+        <Navbar />
+        <InactiveProduct />
+      </>
+    ),
+    errorElement: <NotFound />,
+  },
+  {
+    path: "/product/:id",
+    element: (
+      <>
+        <Navbar />
+        <SingleProduct />
+        <SideNavbar />
+      </>
+    ),
+    errorElement: <NotFound />,
+  },
+  {
     path: "/order",
     element: (
       <>
         <Navbar />
         <Order />
+      </>
+    ),
+    errorElement: <NotFound />,
+  },
+  {
+    path: "/order/:id",
+    element: (
+      <>
+        <Navbar />
+        <SingleOrder />
       </>
     ),
     errorElement: <NotFound />,
@@ -79,6 +165,19 @@ const router = createBrowserRouter([
       <>
         <Navbar />
         <Profile />
+        <ProfileSildeNav />
+      </>
+    ),
+    errorElement: <NotFound />,
+  },
+  {
+    path: "/reset",
+    element: (
+      <>
+        <Navbar />
+
+        <ResetPage />
+        <ProfileSildeNav />
       </>
     ),
     errorElement: <NotFound />,

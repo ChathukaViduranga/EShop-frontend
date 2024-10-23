@@ -1,0 +1,71 @@
+/* AllProducts.css */
+.table-hover tbody tr:hover {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.2
+  ); /* Make the row lighter when hovered */
+}
+
+input::placeholder {
+  color: #ccc;
+}
+
+.input-group-text {
+  border: none;
+}
+
+.btn-outline-danger,
+.btn-outline-success {
+  color: #fff;
+  border-color: #fff;
+}
+
+.btn-outline-danger:hover,
+.btn-outline-success:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+.card {
+  border: none;
+}
+
+h2 {
+  font-weight: bold;
+}
+
+.table th,
+.table td {
+  vertical-align: middle;
+}
+
+.table th {
+  user-select: none; /* Prevent text selection on double-click */
+}
+
+.same-width-btn {
+  width: 110px; /* Set a fixed width to make buttons the same width */
+}
+
+.table th:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.search-button-spacing {
+  margin-left: 10px; /* Adjust the value as needed */
+}
+
+/* AllProducts.css */
+
+.all-products-container {
+  margin-left: 90px; /* Adjust this value based on your navbar's width and positioning */
+}
+
+@media (max-width: 768px) {
+  .all-products-container {
+    margin-left: 0;
+    margin-top: 80px; /* If the navbar moves to the top on smaller screens */
+  }
+}

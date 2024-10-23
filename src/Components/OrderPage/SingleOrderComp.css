@@ -1,0 +1,25 @@
+/* SingleOrder.css */
+.single-order-container {
+  margin-left: 90px; /* Adjust this value based on your navbar's width and positioning */
+}
+
+.card {
+  border: none;
+}
+
+h2,
+h3 {
+  font-weight: bold;
+}
+
+.table th,
+.table td {
+  vertical-align: middle;
+}
+
+@media (max-width: 768px) {
+  .single-order-container {
+    margin-left: 0;
+    margin-top: 80px; /* If the navbar moves to the top on smaller screens */
+  }
+}

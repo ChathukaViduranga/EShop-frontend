@@ -1,0 +1,33 @@
+/* SingleProduct.css */
+.single-product-container {
+  margin-left: 90px; /* Adjust this value based on your navbar's width and positioning */
+}
+
+.card {
+  border: none;
+}
+
+h2 {
+  font-weight: bold;
+}
+
+.table th,
+.table td {
+  vertical-align: middle;
+}
+
+.product-image {
+  max-width: 100%;
+  max-height: 400px;
+  object-fit: contain;
+  border: 1px solid #fff;
+  padding: 5px;
+  background-color: #1a1a1a;
+}
+
+@media (max-width: 768px) {
+  .single-product-container {
+    margin-left: 0;
+    margin-top: 80px; /* If the navbar moves to the top on smaller screens */
+  }
+}

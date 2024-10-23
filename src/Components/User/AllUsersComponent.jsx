@@ -1,8 +1,8 @@
 // AllCustomer.js
 import React, { useState, useEffect } from "react";
-import { getAllCustomers } from "../../services/userApiService";
+import { getAllUsers } from "../../services/userApiService";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./AllCustomer.css";
+import "./AllUsers.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSearch,
@@ -13,7 +13,7 @@ import {
   faSortDown,
 } from "@fortawesome/free-solid-svg-icons";
 
-function AllCustomer() {
+function AllUsersComponent() {
   const [searchTerm, setSearchTerm] = useState("");
   const [customers, setCustomers] = useState([]);
   const [sortConfig, setSortConfig] = useState({ key: null, direction: "asc" });
@@ -21,7 +21,7 @@ function AllCustomer() {
   // Fetch customers from the API
   const getCustomers = async () => {
     try {
-      const response = await getAllCustomers();
+      const response = await getAllUsers();
       console.log(response.data);
       setCustomers(response.data);
     } catch (error) {
@@ -105,7 +105,7 @@ function AllCustomer() {
       <div className="container mt-4">
         <div className="card bg-black text-white">
           <div className="card-body">
-            <h2 className="text-center mb-4">All Customers</h2>
+            <h2 className="text-center mb-4">All users</h2>
             <div className="input-group mb-3">
               <input
                 type="text"
@@ -144,6 +144,13 @@ function AllCustomer() {
                     </th>
                     <th
                       scope="col"
+                      onClick={() => requestSort("email")}
+                      style={{ cursor: "pointer" }}
+                    >
+                      Role <FontAwesomeIcon icon={getSortIcon("email")} />
+                    </th>
+                    <th
+                      scope="col"
                       onClick={() => requestSort("firstName")}
                       style={{ cursor: "pointer" }}
                     >
@@ -158,7 +165,6 @@ function AllCustomer() {
                       Last Name{" "}
                       <FontAwesomeIcon icon={getSortIcon("lastName")} />
                     </th>
-                    <th scope="col">Status</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -166,9 +172,9 @@ function AllCustomer() {
                     <tr key={customer.id}>
                       <td>{customer.id}</td>
                       <td>{customer.email}</td>
+                      <td>{customer.role}</td>
                       <td>{customer.firstName}</td>
                       <td>{customer.lastName}</td>
-                      <td>{customer.isActive ? "active" : "inactive"}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -186,4 +192,4 @@ function AllCustomer() {
   );
 }
 
-export default AllCustomer;
+export default AllUsersComponent;

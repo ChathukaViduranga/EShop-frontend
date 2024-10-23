@@ -1,10 +1,25 @@
-//Order page
-
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+
 import AllOrders from "../Components/OrderPage/AllOrders";
+import { getAllOrders } from "../services/orderApiService";
 
 function Order() {
+  const [orders, setOrders] = useState([]);
+
+  useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        const response = await getAllOrders();
+        setOrders(response.data);
+        console.log(response.data); // Not showing orders
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchOrders();
+  }, []);
+
   const navigate = useNavigate();
   const checkUser = () => {
     const token = localStorage.getItem("token");
@@ -16,9 +31,10 @@ function Order() {
   useEffect(() => {
     checkUser();
   }, []);
+
   return (
     <div>
-      <AllOrders />
+      <AllOrders orders={orders} />
     </div>
   );
 }

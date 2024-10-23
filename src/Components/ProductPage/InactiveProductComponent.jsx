@@ -1,6 +1,6 @@
 // AllProducts Component with Dark Theme Enhancements and Sorting
 import React, { useState, useEffect } from "react";
-import { getAllProducts } from "../../services/productApiService";
+import { getInactiveProducts } from "../../services/productApiService";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./AllProducts.css"; // Import custom CSS for additional styling
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,26 +12,21 @@ import {
   faSortUp,
   faSortDown,
 } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from "react-router-dom";
+import { activateProduct } from "../../services/productApiService";
 
-function AllProducts() {
+function InactiveProductComponent() {
   const [searchTerm, setSearchTerm] = useState("");
   const [products, setProducts] = useState([]);
   const [sortConfig, setSortConfig] = useState({ key: null, direction: "asc" });
 
-  const navigate = useNavigate();
   // Fetch products from the API
   const getProducts = async () => {
     try {
-      const response = await getAllProducts();
+      const response = await getInactiveProducts();
       setProducts(response.data);
     } catch (error) {
       console.error(error);
     }
-  };
-
-  const rowClickHandler = (id) => {
-    navigate(`/product/${id}`);
   };
 
   useEffect(() => {
@@ -83,12 +78,23 @@ function AllProducts() {
     }
   };
 
+  const productActivate = async (e) => {
+    const productId =
+      e.target.parentElement.parentElement.children[0].innerText;
+    try {
+      await activateProduct(productId);
+      getProducts();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div className="all-products-container">
       <div className="container mt-4">
         <div className="card bg-black text-white">
           <div className="card-body">
-            <h2 className="text-center mb-4">Manage Products</h2>
+            <h2 className="text-center mb-4">Review Inactive Products</h2>
             <div className="input-group mb-3">
               <input
                 type="text"
@@ -132,7 +138,14 @@ function AllProducts() {
                     >
                       Price <FontAwesomeIcon icon={getSortIcon("price")} />
                     </th>
-
+                    <th
+                      scope="col"
+                      onClick={() => requestSort("quantity")}
+                      style={{ cursor: "pointer" }}
+                    >
+                      Quantity{" "}
+                      <FontAwesomeIcon icon={getSortIcon("quantity")} />
+                    </th>
                     <th
                       scope="col"
                       onClick={() => requestSort("stock")}
@@ -153,18 +166,27 @@ function AllProducts() {
                 </thead>
                 <tbody>
                   {filteredProducts.map((product) => (
-                    <tr
-                      key={product.id}
-                      className="pe-auto"
-                      onClick={() => rowClickHandler(product.id)}
-                    >
+                    <tr key={product.id}>
                       <td>{product.id}</td>
                       <td>{product.name}</td>
                       <td>${product.price.toFixed(2)}</td>
-
+                      <td>{product.quantity}</td>
                       <td>{product.stock}</td>
                       <td>{product.vendorId}</td>
-                      <td>{product.isActive ? "active" : "inactive"}</td>
+                      <td className="text-center">
+                        {product.isActive ? (
+                          <button className="btn btn-outline-danger btn-sm same-width-btn">
+                            <FontAwesomeIcon icon={faToggleOn} /> Deactivate
+                          </button>
+                        ) : (
+                          <button
+                            onClick={productActivate}
+                            className="btn btn-outline-success btn-sm same-width-btn"
+                          >
+                            <FontAwesomeIcon icon={faToggleOff} /> Activate
+                          </button>
+                        )}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -177,4 +199,4 @@ function AllProducts() {
   );
 }
 
-export default AllProducts;
+export default InactiveProductComponent;

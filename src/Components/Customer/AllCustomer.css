@@ -1,0 +1,23 @@
+/* AddProduct.css */
+
+/* Adjust the container to prevent overlap with the navbar */
+.all-customers-container {
+  margin-left: 7rem; /* Adjust based on your navbar's width */
+  width: 90%;
+}
+
+@media (max-width: 768px) {
+  .all-customers-container {
+    margin-left: 0;
+    margin-top: 80px; /* If the navbar moves to the top on smaller screens */
+  }
+}
+
+/* Optional custom styles */
+.form-group label {
+  font-weight: bold;
+}
+
+.btn-block {
+  width: 100%;
+}
